@@ -1,0 +1,117 @@
+<section class="my-4">
+  <div class="container p-4 border rounded-4">
+    <h2 class="titre-L1">Gestion des comptes utilisateurs</h2>
+    <p class="text-ag">
+      Bienvenue dans le module de gestion des comptes utilisateurs. En tant
+      qu'administrateur, vous avez la possibilité de créer, modifier et
+      supprimer des comptes pour les utilisateurs de votre système.
+    </p>
+
+    <h5 class="titre-L5">Creer un compte utilisateur</h5>
+
+    <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+      <!--creation de compte-->
+      <section>
+        <!--row 1-->
+        <div class="row">
+          <!--Username-->
+          <div class="col">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1"
+                ><i class="fa-regular fa-circle-user"></i
+              ></span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Username"
+                aria-label="Username"
+                aria-describedby="element majeur de connexion pour l'authentification"
+                formControlName="username"
+              />
+            </div>
+          </div>
+          <div class="col">
+            <select formControlName="role" class="form-select"  aria-label="Selection du role utilisateur" >
+              <option value="" selected disabled>Rôle</option>
+              <option value="Screen master">Screen master</option>
+              <option value="Product owner">Product owner</option>
+            </select>
+          </div>
+        </div>
+        <!--row 2-->
+        <div class="row">
+          <!--nom-->
+          <div class="col">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1"
+                ><i class="fa-solid fa-user"></i
+              ></span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nom"
+                aria-label="Nom"
+                aria-describedby="nom de l'utilisateur"
+                formControlName="nom"
+              />
+            </div>
+          </div>
+          <!--prenom-->
+          <div class="col">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1"
+                ><i class="fa-solid fa-user"></i
+              ></span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Prenom"
+                aria-label="Prenom"
+                aria-describedby="prenom de l'utilisateur"
+                formControlName="prenom"
+              />
+            </div>
+          </div>
+        </div>
+        <!--row 3-->
+        <div class="row">
+          <!--mdp-->
+          <div class="col">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1"
+                ><i class="fas fa-lock"></i
+              ></span>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Mot de passe"
+                aria-label="Mot de passe"
+                aria-describedby="mot de passe de l'utilisateur"
+                formControlName="password"
+              />
+            </div>
+          </div>
+          <!--confirme mdp-->
+          <div class="col">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1"
+                ><i class="fas fa-lock"></i
+              ></span>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Confirmer mot de passe"
+                aria-label="Confirmer mot de passe"
+                aria-describedby="basic-addon1"
+              />
+            </div>
+          </div>
+        </div>
+        <!--row 4-->
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" type="submit">Créer</button>
+        </div>
+      </section>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+@use '../../../styles';
+
+.container{
+  background-color: #000;
+}
+
+i{
+  color: styles.$primary-color;
+}
+
+.titre-L1{
+  color:styles.$primary-text-color;
+}
+
+.titre-L5{
+  color: #fff;
+}
+
+.text-ag{
+  color:styles.$secondary-text-color;
+}
+
+.btn-primary{
+  background-color: styles.$primary-color;
+  color: #000;
+  font-weight: 600;
+  font-size: 1.2rem;
+  border: none;
+}
+
+.btn-primary:hover{
+  background-color: styles.$thirdly-text-color;
+}
