@@ -4,3 +4,12 @@ $primary-color:#f16e00;
 $primary-text-color: #f16e00;
 $secondary-text-color:#6c757d;
 $thirdly-text-color:#f16c00c7;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.btn-toggle {
+  color : #FFFFFF !important;
+  stroke: #FFFFFF !important;
+  fill: #FFFFFF !important;
+}

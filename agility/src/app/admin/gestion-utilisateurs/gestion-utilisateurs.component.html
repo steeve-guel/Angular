@@ -1,0 +1,38 @@
+<h2>Requête SPARQL</h2>
+<textarea
+  [(ngModel)]="query"
+  rows="10"
+  cols="80"
+  placeholder="Entrez votre requête SPARQL ici"
+></textarea>
+<br />
+<button (click)="executeQuery()">Exécuter</button>
+
+<h3>Résultats</h3>
+<pre>{{ results | json }}</pre>
+
+<h2>Requête SPARQL</h2>
+<textarea
+  [(ngModel)]="query"
+  rows="10"
+  cols="80"
+  placeholder="Entrez votre requête SPARQL ici"
+></textarea>
+<br />
+<button (click)="executeQuery()">Exécuter</button>
+
+<h3>Résultats</h3>
+<table *ngIf="results">
+  <thead>
+    <tr>
+      <th *ngFor="let variable of results.head.vars">{{ variable }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let binding of results.results.bindings">
+      <td *ngFor="let variable of results.head.vars">
+        {{ binding[variable].value }}
+      </td>
+    </tr>
+  </tbody>
+</table>
