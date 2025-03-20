@@ -1,41 +1,53 @@
 <section>
   <h1 class="owl-title pb-2">Les differentes classe de l'ontologie</h1>
   <div class="container">
-
     <div class="row w-100">
-      @for (binding of data; track $index) {
+      @for (result of results; track $index) {
 
-      <p
-        class="col-5 col-sm-5 mb-2 me-2 p-2"
+      <div
+        class="col-5 col-sm-5 mb-2 me-2 p-2 d-flex justify-content-between"
         style="background: white; color: black"
       >
-        <span>
-          <svg
-            fill="#2396ED"
-            width="24px"
-            height="24px"
-            viewBox="0 0 1000 1000"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g
-              id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></g>
-            <g id="SVGRepo_iconCarrier">
-              <path
-                d="M313 333H153q-8 0-14-6t-6-14V153q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H418q-8 0-14-6t-6-14V153q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H683q-8 0-14-6t-6-14V153q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zM313 598H153q-8 0-14-6t-6-14V418q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H418q-8 0-14-6t-6-14V418q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H683q-8 0-14-6t-6-14V418q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zM313 863H153q-8 0-14-6t-6-14V683q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H418q-8 0-14-6t-6-14V683q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H683q-8 0-14-6t-6-14V683q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6z"
-              ></path>
-            </g>
-          </svg>
-        </span>
-        <span class="owl-text">{{ binding["class"].value.split("#")[1] }}</span>
-      </p>
+        <div>
+          <span>
+            <svg
+              fill="#2396ED"
+              width="24px"
+              height="24px"
+              viewBox="0 0 1000 1000"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M313 333H153q-8 0-14-6t-6-14V153q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H418q-8 0-14-6t-6-14V153q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H683q-8 0-14-6t-6-14V153q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zM313 598H153q-8 0-14-6t-6-14V418q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H418q-8 0-14-6t-6-14V418q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H683q-8 0-14-6t-6-14V418q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zM313 863H153q-8 0-14-6t-6-14V683q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H418q-8 0-14-6t-6-14V683q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H683q-8 0-14-6t-6-14V683q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6z"
+                ></path>
+              </g>
+            </svg>
+          </span>
+          <span class="owl-text">{{
+            result
+          }}</span>
+        </div>
 
+        <span
+          ><button mat-raised-button (click)="openDialog(result)">Details</button
+        ></span>
+      </div>
       }
     </div>
-    <small class="owl-small-text">{{data.length}} classes (contient également les sous-classes des classes)</small>
+    <small class="owl-small-text"
+      >{{ results!.length }} classes (contient également les sous-classes des
+      classes)</small
+    >
   </div>
+</section>
 
+<section class="mt-3">
+  <app-property />
 </section>

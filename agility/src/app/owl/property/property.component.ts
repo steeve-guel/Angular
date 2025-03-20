@@ -12,14 +12,13 @@ export class PropertyComponent {
 
   query: string = `
 
-      PREFIX owl: <http://www.w3.org/2002/07/owl#>
+    PREFIX owl: <http://www.w3.org/2002/07/owl#>
 
-      SELECT ?class WHERE {
-        ?class a owl:Class .
-        FILTER (!isBlank(?class))
-      }
+    SELECT ?property WHERE {
+      ?property a owl:ObjectProperty .
+    }
     `;
-  results: any;
+  results:string[] | undefined;
 
   data: any;
 
@@ -37,22 +36,23 @@ export class PropertyComponent {
   // }
 
   extractValues(data: any): string[] {
-    return data.results.bindings.map((binding: any) => {
-      // Extrait la partie après '#' dans la valeur de la variable 's'
-      return binding.s.value.split('#')[1];
+    let listClass:string[] = [];
+    data.results.bindings.forEach((owlClass:any) => {
+      listClass.push(owlClass["property"].value.split('#')[1])
     });
+    return listClass;
   }
   executeQuery() {
     this.owlServices.executeQuery(this.query).subscribe(
       {
         next: (data) => {
-          this.results = data;
+          this.results = this.extractValues(data);
           this.data = data.results.bindings;
 
-          console.log(data); // Affiche les résultats dans la console
-          console.log(data.results.bindings[0].s.value.split('#')[1]); // Affiche les résultats dans la console
-          console.log(this.results.head.vars);
-          console.log(this.extractValues(data))
+          //console.log(data); // Affiche les résultats dans la console
+          //console.log(data.results.bindings[0].property.value.split('#')[1]); // Affiche les résultats dans la console
+          //console.log(this.results.head.vars);
+          //console.log(this.extractValues(data))
         },
         error: (error) => {
           console.error('Erreur lors de la requête SPARQL :', error);

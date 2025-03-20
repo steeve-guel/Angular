@@ -1,0 +1,107 @@
+<h2 mat-dialog-title>OWL - Details Class</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>Class : {{ data }}</h3>
+  <!-- <p>
+    Learn one way to build applications with Angular and reuse your code and
+    abilities to build apps for any deployment target. For web, mobile web,
+    native mobile and native desktop.
+  </p> -->
+
+  <h3>Description : {{ data }}</h3>
+  <!-- <p>
+    Achieve the maximum speed possible on the Web Platform today, and take it
+    further, via Web Workers and server-side rendering. Angular puts you in
+    control over scalability. Meet huge data requirements by building data
+    models on RxJS, Immutable.js or another push-model.
+  </p> -->
+
+  <h3>Subclass</h3>
+
+  <!--SubClass-->
+  @if(subClass.length>0){
+  <div class="row w-100">
+    @for (result of subClass; track $index) {
+
+    <div
+      class="col-12 col-sm-12 m-3 mb-2 me-2 p-2"
+      style="background: white; color: black"
+    >
+      <div>
+        <span>
+          <svg
+            fill="#2396ED"
+            width="24px"
+            height="24px"
+            viewBox="0 0 1000 1000"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M313 333H153q-8 0-14-6t-6-14V153q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H418q-8 0-14-6t-6-14V153q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H683q-8 0-14-6t-6-14V153q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zM313 598H153q-8 0-14-6t-6-14V418q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H418q-8 0-14-6t-6-14V418q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H683q-8 0-14-6t-6-14V418q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zM313 863H153q-8 0-14-6t-6-14V683q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H418q-8 0-14-6t-6-14V683q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H683q-8 0-14-6t-6-14V683q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6z"
+              ></path>
+            </g>
+          </svg>
+        </span>
+        <span class="owl-text">{{ result }}</span>
+      </div>
+    </div>
+    }
+  </div>
+  } @else{
+  <p>Aucune sous-classe disponible.</p>
+  }
+  <h3>Classe parente</h3>
+
+  <!--SubClass-->
+  @if(parenClass.length>0){
+  <div class="row w-100">
+    @for (result of parenClass; track $index) {
+
+    <div
+      class="col-12 col-sm-12 m-3 mb-2  me-2 p-2"
+      style="background: white; color: black"
+    >
+      <div>
+        <span>
+          <svg
+            fill="#2396ED"
+            width="24px"
+            height="24px"
+            viewBox="0 0 1000 1000"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M313 333H153q-8 0-14-6t-6-14V153q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H418q-8 0-14-6t-6-14V153q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H683q-8 0-14-6t-6-14V153q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zM313 598H153q-8 0-14-6t-6-14V418q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H418q-8 0-14-6t-6-14V418q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H683q-8 0-14-6t-6-14V418q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zM313 863H153q-8 0-14-6t-6-14V683q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H418q-8 0-14-6t-6-14V683q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6zm265 0H683q-8 0-14-6t-6-14V683q0-8 6-14t14-6h160q8 0 14 6t6 14v160q0 8-6 14t-14 6z"
+              ></path>
+            </g>
+          </svg>
+        </span>
+        @if (result != undefined) {
+          <span class="owl-text">{{ result }}</span>
+        }
+
+      </div>
+    </div>
+    }
+  </div>
+  } @else{
+  <p>Aucune Classe Parente disponible.</p>
+  }
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>
