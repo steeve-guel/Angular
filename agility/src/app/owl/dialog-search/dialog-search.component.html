@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>Ontologie</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>Select Class : {{ data.value }}</h3>
+  <small class="owl-small-text"
+    >Trouver en détail tout les elements tournant autour de l'element
+    <em>{{ data.value }}. </em> Interargisser avec <br/> le menu ci-dessous pour voir
+    les class, property, instance.</small
+  >
+
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab label="Class">
+      <section>
+        <section class="row w-100">
+          <section class="col-6">
+            <h3>Sous Class</h3>
+            @if (sousClass?.length != 0) {
+            <ul>
+              @for (item of sousClass; track $index) {
+              <li>{{ item }}</li>
+              }
+            </ul>
+            } @else {
+            <small class="owl-small-text">Aucune sous class disponible.</small>
+            }
+          </section>
+          <section class="col-6">
+            <h3>Class Parente</h3>
+            @if (parentClass?.length !=0) {
+            <ul>
+              @for (item of parentClass; track $index) {
+              <li>{{ item }}</li>
+              }
+            </ul>
+            } @else {
+            <small class="owl-small-text"
+              >Aucune class parente disponible.</small
+            >
+            }
+          </section>
+        </section>
+      </section>
+    </mat-tab>
+    <mat-tab label="Property">Content 2</mat-tab>
+    <mat-tab label="Instance">Content 3</mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

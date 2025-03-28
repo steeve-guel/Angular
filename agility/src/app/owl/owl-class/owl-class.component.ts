@@ -5,11 +5,12 @@ import { PropertyComponent } from '../property/property.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogDetailsClassComponent } from '../dialog-details-class/dialog-details-class.component';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
   selector: 'app-owl-class',
   standalone: true,
-  imports: [CommonModule, PropertyComponent, MatButtonModule, MatDialogModule],
+  imports: [CommonModule, MatButtonModule, MatDialogModule, PropertyComponent, SearchBarComponent],
   templateUrl: './owl-class.component.html',
   styleUrl: './owl-class.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,7 +25,9 @@ export class OwlClassComponent {
       FILTER (!isBlank(?class))
     }
   `;
-  results:string[] | undefined;
+  results : string [] | undefined;
+
+  test!: string;
 
   data: any;
 

@@ -1,3 +1,13 @@
+<section style="width: 100%">
+  <h1>Recherche</h1>
+  <small class="owl-small-text"
+    >Inserer une valeur (class or property) pour reduire la liste de recherche
+    et selectionner ensuite l'option souhaitée.<br />Ensuite Appuyer sur le
+    <strong>bouton de recherche</strong>
+  </small>
+  <app-search-bar [options]="results" />
+</section>
+
 <section>
   <h1 class="owl-title pb-2">Les differentes classe de l'ontologie</h1>
   <div class="container">
@@ -30,14 +40,14 @@
               </g>
             </svg>
           </span>
-          <span class="owl-text">{{
-            result
-          }}</span>
+          <span class="owl-text">{{ result }}</span>
         </div>
 
         <span
-          ><button mat-raised-button (click)="openDialog(result)">Details</button
-        ></span>
+          ><button mat-raised-button (click)="openDialog(result)">
+            Details
+          </button></span
+        >
       </div>
       }
     </div>
