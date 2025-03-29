@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class OwlServicesService {
 
-  private fusekiUrl = 'http://semantichub.ijs.si/fuseki/monOntologie/query';
-  // private fusekiUrl = 'http://localhost:3030/monOntologie/query';
+  // private fusekiUrl = 'http://semantichub.ijs.si/fuseki/monOntologie/query';
+  private fusekiUrl = 'http://localhost:3030/monOntologie/query';
 
   constructor(private http: HttpClient) { }
 

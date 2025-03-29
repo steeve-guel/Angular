@@ -1,13 +1,13 @@
 <h2 mat-dialog-title>OWL - Details Class</h2>
 <mat-dialog-content class="mat-typography">
-  <h3>Class : {{ data }}</h3>
+  <h3 style="color: #96e6b3;">Class : {{ data }}</h3>
   <!-- <p>
     Learn one way to build applications with Angular and reuse your code and
     abilities to build apps for any deployment target. For web, mobile web,
     native mobile and native desktop.
   </p> -->
 
-  <h3>Description : {{ data }}</h3>
+  <h3 style="color: #96e6b3;">Description : {{ data }}</h3>
   <!-- <p>
     Achieve the maximum speed possible on the Web Platform today, and take it
     further, via Web Workers and server-side rendering. Angular puts you in
@@ -15,7 +15,7 @@
     models on RxJS, Immutable.js or another push-model.
   </p> -->
 
-  <h3>Subclass</h3>
+  <h3 style="color: #96e6b3;">Sous-classe</h3>
 
   <!--SubClass-->
   @if(subClass.length>0){
@@ -54,9 +54,9 @@
     }
   </div>
   } @else{
-  <p>Aucune sous-classe disponible.</p>
+  <small class="owl-small-text">Aucune sous-classe disponible.</small>
   }
-  <h3>Classe parente</h3>
+  <h3 style="color: #96e6b3 !important;">Classe parente</h3>
 
   <!--SubClass-->
   @if(parenClass.length>0){
@@ -98,7 +98,7 @@
     }
   </div>
   } @else{
-  <p>Aucune Classe Parente disponible.</p>
+  <small class="owl-small-text">Aucune Classe Parente disponible.</small>
   }
 </mat-dialog-content>
 <mat-dialog-actions align="end">
