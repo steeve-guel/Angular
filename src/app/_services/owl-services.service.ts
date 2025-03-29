@@ -15,7 +15,7 @@ export class OwlServicesService {
   executeQuery(sparqlQuery: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/sparql-query',
-      Accept: 'application/json',
+      'Accept': 'application/json',
     });
 
     return this.http.post(this.fusekiUrl, sparqlQuery, { headers });
