@@ -1,4 +1,4 @@
-import { Component, inject, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, model, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { OwlServicesService } from '../../_services/owl-services.service';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-dialog-search',
@@ -18,27 +19,36 @@ import { OwlServicesService } from '../../_services/owl-services.service';
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
   ],
   templateUrl: './dialog-search.component.html',
-  styleUrl: './dialog-search.component.scss'
+  styleUrl: './dialog-search.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogSearchComponent {
   readonly data = inject(MAT_DIALOG_DATA);
 
+  readonly panelOpenState = signal(false);
+
   sousClass: string[] | undefined;
-  parentClass : string[] | undefined;
+  parentClass: string[] | undefined;
+  instance: string[] | undefined;
+
+  relation:any;
 
   constructor(private owlServices: OwlServicesService) { }
 
   ngOnInit() {
     this.executeQueryClasse();
     this.executeQuerryParentClass();
+    this.executeQuerryInstance();
+    this.executeQuerryRelation();
   }
 
   //Recuperation des sous-classes
   executeQueryClasse() {
-    let query1: string = `
+    let query: string = `
 
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX ex: <http://www.semanticweb.org/kraft_dev/ontologies/2025/0/untitled-ontology-3#>
@@ -48,12 +58,11 @@ export class DialogSearchComponent {
     }
   `;
 
-    this.owlServices.executeQuery(query1).subscribe(
+    this.owlServices.executeQuery(query).subscribe(
       {
         next: (data: any) => {
 
           this.sousClass = this.extractValues(data, "subClass");
-          console.log(data);
         },
         error: () => {
 
@@ -64,7 +73,7 @@ export class DialogSearchComponent {
 
   //Recuperation des classes parentes
   executeQuerryParentClass() {
-    let query2: string = `
+    let query: string = `
 
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX ex: <http://www.semanticweb.org/kraft_dev/ontologies/2025/0/untitled-ontology-3#>
@@ -75,29 +84,68 @@ export class DialogSearchComponent {
     }
   `;
 
-  this.owlServices.executeQuery(query2).subscribe(
-    {
-      next:(data:any)=>{
-          this.parentClass = this.extractValues(data,"parentClass");
+    this.owlServices.executeQuery(query).subscribe(
+      {
+        next: (data: any) => {
+          this.parentClass = this.extractValues(data, "parentClass");
 
-      },
-      error:()=>{
+        },
+        error: () => {
 
+        }
       }
-    }
-  )
+    );
   }
 
 
   executeQuerryInstance() {
 
-    let query2: string = `
+    let query: string = `
       PREFIX ex: <http://www.semanticweb.org/kraft_dev/ontologies/2025/0/untitled-ontology-3#>
 
       SELECT ?instance WHERE {
-        ?instance a ex:${this.data.class} .
+        ?instance a ex:${this.data.value} .
       }
   `;
+
+    this.owlServices.executeQuery(query).subscribe(
+      {
+        next: (data: any) => {
+          this.instance = this.extractValues(data, "instance");
+
+        },
+        error: () => {
+
+        }
+      }
+    )
+  }
+
+  //Relation entre les instances
+  executeQuerryRelation() {
+
+    let query: string = `
+      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+      PREFIX ex: <http://www.semanticweb.org/kraft_dev/ontologies/2025/0/untitled-ontology-3#>
+
+      SELECT ?instance ?property ?value WHERE {
+        ?instance a ex:${this.data.value} ;
+                  ?property ?value .
+        FILTER (?property != rdf:type)  # Exclusion directe
+      }
+  `;
+
+    this.owlServices.executeQuery(query).subscribe(
+      {
+        next: (data: any) => {
+          console.log(data);
+          this.relation = data;
+        },
+        error: () => {
+
+        }
+      }
+    )
   }
 
   extractValues(data: any, key: string): string[] {

@@ -3,8 +3,8 @@
   <h3>Select Class : {{ data.value }}</h3>
   <small class="owl-small-text"
     >Trouver en détail tout les elements tournant autour de l'element
-    <em>{{ data.value }}. </em> Interargisser avec <br/> le menu ci-dessous pour voir
-    les class, property, instance.</small
+    <em>{{ data.value }}. </em> Interargisser avec <br />
+    le menu ci-dessous pour voir les class, property, instance.</small
   >
 
   <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
@@ -40,8 +40,67 @@
         </section>
       </section>
     </mat-tab>
+    <!------------Property------------>
     <mat-tab label="Property">Content 2</mat-tab>
-    <mat-tab label="Instance">Content 3</mat-tab>
+    <!----------Instance------------->
+    <mat-tab label="Instance">
+      <small class="owl-small-text"
+        >Interragissez avec les panneaux ci-dessous pour consulter les
+        différentes informations</small
+      >
+      <!----Expansion panel---->
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Instance(s) </mat-panel-title>
+            <mat-panel-description>
+              Liste de toue les instance de la classe {{ data.value }}.
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Instance de la classe {{ data.value }}.</p>
+          <section>
+            @if (instance?.length != 0) {
+            <ul>
+              @for (item of instance; track $index) {
+              <li>{{ item }}</li>
+              }
+            </ul>
+            } @else {
+            <small class="owl-small-text">Aucune instance disponible.</small>
+            }
+          </section>
+        </mat-expansion-panel>
+        <mat-expansion-panel
+          (opened)="panelOpenState.set(true)"
+          (closed)="panelOpenState.set(false)"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Property relation </mat-panel-title>
+            <mat-panel-description>
+              Relation entre les instances
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Relation</p>
+          <section>
+            @if (relation.results.bindings != 0) { @for (item of relation.results.bindings; track
+            $index) {
+            <div class="m-2 owl-small-text">
+              <span >{{ item["instance"].value.split("#")[1] }}</span>
+              <span >
+                {{ item["property"].value.split("#")[1] }}
+              </span>
+              <span >{{ item["value"].value.split("#")[1] }}</span>
+            </div>
+
+            } } @else {
+              <small class="owl-small-text">Aucune relation disponible.</small>
+            }
+          </section>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <!--------------->
+    </mat-tab>
   </mat-tab-group>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
